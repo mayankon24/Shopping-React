@@ -1,0 +1,41 @@
+.button {
+    background-color: rgb(247, 163, 8); /* Green */
+    height: 40px;
+    width: 130px;
+    border: none;
+    color: black;    
+    text-align: center;
+    text-decoration: none;    
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .roundButton {border-radius: 20px;}
+
+  .text-price{
+    color: grey;
+    text-decoration: line-through;
+  }
+
+  .text-discount{
+    color: green;    
+  }
+
+
+  .div-button{
+
+   text-align: center;
+  }
+ 
+  .div-container{
+
+    height: 250px;
+    width: 180px;
+    padding: 5px;
+    border: 3px solid rosybrown;
+    float: left;
+    
+  }
+ 
