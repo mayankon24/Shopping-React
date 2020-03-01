@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import  './Container.css';
 import ShoppingItemList from './ShoppingItemList/ShoppingItemList';
 import PriceSlider from './PriceSlider';
@@ -6,23 +6,25 @@ import SortPanel from './SortPanel';
 import SearchItem from './SearchItem';
 import * as Constants from '../Constant'
 
-const itemS = [
-    {id:9090,name:'Item1',price:200,discount:10,category:'fiction',img_url:'http://lorempixel.com/500/600/technics/'},
-    {id:9091,name:'Item2',price:250,discount:15,category:'literature',img_url:'http://lorempixel.com/500/600/technics/'},
-    {id:9092,name:'Item3',price:320,discount:5,category:'literature',img_url:'http://lorempixel.com/500/600/technics/'},
-    {id:9093,name:'Item4',price:290,discount:0,category:'thriller',img_url:'http://lorempixel.com/500/600/technics/'},
-    {id:9094,name:'Item5',price:500,discount:25,category:'thriller',img_url:'http://lorempixel.com/500/600/technics/'},
-    {id:9095,name:'Item6',price:150,discount:5,category:'literature',img_url:'http://lorempixel.com/500/600/technics/'},
-    {id:9096,name:'Item7',price:700,discount:22,category:'literature',img_url:'http://lorempixel.com/500/600/technics/'},
-    {id:9097,name:'Item8',price:350,discount:18,category:'fiction',img_url:'http://lorempixel.com/500/600/technics/'}
-];
-
 const Container = () =>
 {
+    var apiCalled = false;
+    const [items, setitems] = useState([]);
     const [sortOrder, setSortOrder] = useState( Constants.HighLow)
     const [searchValue, setSearchValue] = useState( "")
     const [PriceSliderValue, setPriceSliderValue] = useState(1000)
+    const callItemApi = ()=>{
 
+        fetch('https://api.myjson.com/bins/qzuzi')
+        .then(res => res.json())
+        .then((data) => {
+            setitems(data);
+        })
+        .catch(console.log);
+        apiCalled = true;
+    }
+    useEffect(callItemApi, apiCalled);
+   
     const handelSortClick = (sortOrder)=>
     {
         setSortOrder(sortOrder);        
@@ -38,14 +40,14 @@ const Container = () =>
 
     const getDisplayItemList =()=>{
 
-        var newItems = [...itemS]
+        var newItems = [...items]
         newItems = newItems.filter((item)=> item.price <= PriceSliderValue );
 
         if(searchValue !== "")
         {
             let searchItemList = searchValue.split(',');
             searchItemList = searchItemList.map((e)=> e.trim().toLowerCase() );
-            newItems = itemS.filter( el  => (searchItemList.indexOf(el.name.toLowerCase()) !== -1)  )   
+            newItems = newItems.filter( el  => (searchItemList.indexOf(el.name.toLowerCase()) !== -1)  )   
         }     
 
 

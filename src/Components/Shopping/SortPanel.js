@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import  './SortPanel.css';
 import * as Constants from '../Constant'
 
@@ -26,4 +26,10 @@ const SortPanel = ({sortClick}) =>
     )
 }
 
-export default SortPanel;
+
+
+function arePropsEqual(prevProps, nextProps) {
+    return prevProps.sortClick === nextProps.sortClick; 
+  }
+
+export default memo(SortPanel, arePropsEqual);
