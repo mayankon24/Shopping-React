@@ -21,6 +21,8 @@ const Container = () =>
 {
     const [sortOrder, setSortOrder] = useState( Constants.HighLow)
     const [searchValue, setSearchValue] = useState( "")
+    const [PriceSliderValue, setPriceSliderValue] = useState(1000)
+
     const handelSortClick = (sortOrder)=>
     {
         setSortOrder(sortOrder);        
@@ -29,15 +31,16 @@ const Container = () =>
     {
         setSearchValue(searchValue);        
     }
-    const handelPriceSliderChanged = (minValue, MaxValue)=>
+    const handelPriceSliderChanged = (value)=>
     {
-
-
+        setPriceSliderValue(value);
     }
 
     const getDisplayItemList =()=>{
 
         var newItems = [...itemS]
+        newItems = newItems.filter((item)=> item.price <= PriceSliderValue );
+
         if(searchValue !== "")
         {
             let searchItemList = searchValue.split(',');

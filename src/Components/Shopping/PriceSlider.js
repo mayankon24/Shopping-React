@@ -1,52 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react'
+import Slider from 'react-rangeslider'
 import './PriceSlider.css';
-// import RangeSlider from 'rn-range-slider';
+import 'react-rangeslider/lib/index.css'  // To include the default styles
 
-/*import ReactDualRangeSlider from 'react-dual-range-slider';*/
-/*var ReactDualRangeSlider = require('react-dual-range-slider');*/
+class PriceSlider extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      horizontal: 1000    
+    }
+  }
 
-const PriceSlider = (PriceSliderChanged) =>
-{
-  return(
+  handleChangePrice = value => {
+    this.setState({      horizontal: value     })    
+  };
+  
+  handleChangePriceComplete = () =>{
+    this.props.PriceSliderChanged(this.state.horizontal);
+  }
 
-    <div>
-      price slicer
-    </div>
-    // <RangeSlider
-    //     style={{width: 160, height: 80}}
-    //     gravity={'center'}
-    //     min={200}
-    //     max={1000}
-    //     step={20}
-    //     selectionColor="#3df"
-    //     blankColor="#f618"
-    //     onValueChanged={ (low, high, fromUser) => {       PriceSliderChanged( low,  high)    }     }>      
-    // </RangeSlider>
-  )
+  render () {
+    const { horizontal } = this.state
+    const horizontalLabels = {
+      0: '0',
+      50: 'Price',
+      1000: '1000'
+    }
+
+    const formatPrice = value => '₹' +value 
+
+
+    return (
+      <div className='slider custom-labels'>
+        <Slider
+          min={0}
+          max={1000}
+          value={horizontal}
+          labels={horizontalLabels}
+          format={formatPrice}
+          handleLabel={horizontal}
+          onChange={this.handleChangePrice}
+          onChangeComplete = {this.handleChangePriceComplete }
+        />
+        <br></br>
+        <br></br>
+        <div style={ { textAlign: "center"}} className='value'>{formatPrice (horizontal)}</div>
+        
+      </div>
+    )
+  }
 }
 
-
-
-// class PriceSlider extends React.Component {
-//     constructor(props) {
-//       super(props);
-   
-//       this.state = {
-//         value: { min: 500, max: 8000 },
-//       };
-//     }
-   
-//     render() {
-//       return (
-
-//         <InputRange
-//           formatLabel={value => `₹${value}`}
-//           minValue={100}
-//           maxValue={10000}         
-//           value={this.state.value}
-//           onChange={value => this.setState({ value })} />
-//       );
-//     }
-//   }
-
-export default PriceSlider;
+export default PriceSlider
