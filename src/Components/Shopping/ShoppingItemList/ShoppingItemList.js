@@ -18,7 +18,9 @@ const ShoppingItemList = ({itemList}) =>
                         price = {item.price}
                         discount = {item.discount}
                         category = {item.category}
-                        img_url = {item.img_url}     
+                        img_url = {item.img_url} 
+                        sellingPrice = {item.sellingPrice}  
+                        discountPercentage= {item.discountPercentage}  
                         />
                     </div>
                 )

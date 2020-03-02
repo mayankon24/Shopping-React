@@ -3,12 +3,10 @@ import './ShoppingItem.css'
 
 
 
-const ShoppingItem = ({id, name, price, discount, category, img_url}) =>
+const ShoppingItem = ({id, name, price, discount, category, img_url, sellingPrice, discountPercentage}) =>
 {
 
-    const sellingPrice = price - discount ;
-    const discountPercentage = ((discount*100)/price).toFixed(2);
-
+   
     return(
         <div className="div-container">
             <img src = {img_url} height = "150" width = "100%"  />

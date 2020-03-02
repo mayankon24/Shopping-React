@@ -19,7 +19,15 @@ const Container = () =>
         fetch('https://api.myjson.com/bins/qzuzi')
         .then(res => res.json())
         .then((data) => {
-            setitems(data);
+
+            let dataNew = data.map( (i)=>   {
+                i["sellingPrice"] = i.price - i.discount  ;
+                i["discountPercentage"] = ((i.discount*100)/i.price).toFixed(2);
+
+              return i;
+            }
+            );
+            setitems(dataNew);
         })
         .catch(console.log);
         apiCalled = true;
