@@ -4,6 +4,7 @@ import ShoppingItemList from './ShoppingItemList/ShoppingItemList';
 import PriceSlider from './PriceSlider';
 import SortPanel from './SortPanel';
 import SearchItem from './SearchItem';
+import CartIcon from './CartIcon';
 import * as Constants from '../Constant'
 
 const Container = () =>
@@ -36,6 +37,9 @@ const Container = () =>
     const handelPriceSliderChanged = (value)=>
     {
         setPriceSliderValue(value);
+    }
+    const handelCartIconClicked = () =>    {
+
     }
 
     const getDisplayItemList =()=>{
@@ -71,7 +75,8 @@ const Container = () =>
 
         <div className= "container">
             <div className= "containerHeader" >
-                <SearchItem searchClick={ handelSearch }/>
+                <CartIcon CartIconClicked = {handelCartIconClicked} />
+                <SearchItem searchClick={ handelSearch }/>               
             </div>
             <div className= "containerBody">
                 <div className = "containerFilter">

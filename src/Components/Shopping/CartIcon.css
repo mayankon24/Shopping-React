@@ -1,0 +1,14 @@
+.cartIcon {
+    float: right;
+    
+    width: 20PX;
+    height: 22px;
+    
+   
+    color: white;    
+    cursor: pointer;
+
+    margin: 7px;
+    margin-left: 0px;
+    font-size: x-large;
+}
