@@ -5,7 +5,7 @@ import PriceSlider from './PriceSlider';
 import SortPanel from './SortPanel';
 import SearchItem from './SearchItem';
 import CartIcon from './CartIcon';
-import * as Constants from '../Constant'
+import * as Constants from '../../Shared/Constant'
 
 const Container = () =>
 {
@@ -63,17 +63,17 @@ const Container = () =>
         }     
 
 
-        if (sortOrder === Constants.HighLow)
+        if (sortOrder === Constants.LowHigh )
          {
             newItems.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
          }
-         else if (sortOrder === Constants.LowHigh)
+         else if (sortOrder === Constants.HighLow)
          {
             newItems.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
             newItems.reverse();
          }
          else{
-            newItems.sort((a, b) => parseFloat(a.discount) - parseFloat(b.discount));
+            newItems.sort((a, b) => parseFloat(a.discountPercentage) - parseFloat(b.discountPercentage));
          }
         return [...newItems];
     }

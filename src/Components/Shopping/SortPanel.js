@@ -1,6 +1,6 @@
 import React, { useState, memo } from 'react';
 import  './SortPanel.css';
-import * as Constants from '../Constant'
+import * as Constants from '../../Shared/Constant'
 
 const SortPanel = ({sortClick}) =>
 {
