@@ -6,10 +6,11 @@ import { faHome, faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-ic
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
-const CartIcon = (CartIconClicked) => {
+const CartIcon = ({cartCount, CartIconClicked}) => {
     return(
-        <div>
-            <FontAwesomeIcon  className="cartIcon" icon={faShoppingCart} onClick={() => CartIconClicked() } /> 
+        <div>            
+            <FontAwesomeIcon  className="cartIcon" icon={faShoppingCart} onClick={() => CartIconClicked() } />
+            <div className="cartIcon">  {cartCount}</div>            
         </div>
     )
 }

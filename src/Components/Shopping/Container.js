@@ -83,7 +83,7 @@ const Container = () =>
 
         <div className= "container">
             <div className= "containerHeader" >
-                <CartIcon CartIconClicked = {handelCartIconClicked} />
+                <CartIcon CartIconClicked = {handelCartIconClicked} cartCount = {2} />
                 <SearchItem searchClick={ handelSearch }/>               
             </div>
             <div className= "containerBody">
