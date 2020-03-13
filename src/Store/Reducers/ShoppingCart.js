@@ -30,6 +30,7 @@ const removeCartItem = (state, action) =>{
 const initialState = {
     ShoppingItems : null,
     CartItemIds:null
+    
 }
 
 
