@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import  './Container.css';
-import ShoppingItemList from './ShoppingItemList/ShoppingItemList';
-import PriceSlider from './PriceSlider';
-import SortPanel from './SortPanel';
-import SearchItem from './SearchItem';
-import CartIcon from './CartIcon';
+import  './ShoppingItem.css';
+import ShoppingItemList from '../../Components/Shopping/ShoppingItemList/ShoppingItemList';
+import PriceSlider from '../../Components/Shopping/PriceSlider';
+import SortPanel from '../../Components/Shopping/SortPanel';
+import SearchItem from '../../Components/Shopping/SearchItem';
+import CartIcon from '../../Components/Shopping/CartIcon';
 import * as Constants from '../../Shared/Constant'
 
 const Container = () =>
