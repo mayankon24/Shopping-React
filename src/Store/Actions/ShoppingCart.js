@@ -2,7 +2,7 @@ import * as actionTypes from './ActionType';
 import axios from 'axios';
 
 
-const addCartItem = (itemId) =>{
+export const addCartItem = (itemId) =>{
     return {
 
         type:actionTypes.ADD_CART_ITEM,
@@ -10,7 +10,7 @@ const addCartItem = (itemId) =>{
     }
 }
 
-const removeCartItem = (itemId) =>{
+export const removeCartItem = (itemId) =>{
     return {
 
         type:actionTypes.REMOVE_CART_ITEM,
@@ -33,7 +33,7 @@ const fetchShoppingItemsFailed = () =>{
     }
 }
 
-const fetchShoppingItems = () =>{
+export const fetchShoppingItems = () =>{
 
     return dispatch => {
         axios.get( 'https://api.myjson.com/bins/qzuzi' )
