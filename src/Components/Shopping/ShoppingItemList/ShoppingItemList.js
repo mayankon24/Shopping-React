@@ -1,5 +1,5 @@
 import React from 'react'
-import Classes from './ShoppingItemList.css'
+//import Classes from './ShoppingItemList.css'
 import ShoppingItem from './ShoppingItem/ShoppingItem'
 
 

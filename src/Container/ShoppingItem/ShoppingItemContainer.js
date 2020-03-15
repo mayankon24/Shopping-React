@@ -12,7 +12,7 @@ import * as Constants from '../../Shared/Constant'
 
 const ShoppingItemContainer = () =>
 {
-    let apiCalled = false;
+    let apiCalled = [false];
 
     const {ShoppingItems} = useSelector( (state) => (
             {

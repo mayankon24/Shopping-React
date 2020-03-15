@@ -9,7 +9,7 @@ const ShoppingItem = ({id, name, price, discount, category, img_url, sellingPric
    
     return(
         <div className="div-container">
-            <img src = {img_url} height = "150" width = "100%"  />
+            <img src = {img_url} height = "150" width = "100%"  alt="" />
             <div>  {name} </div> 
             <div>
                 <strong>₹{sellingPrice}</strong>   

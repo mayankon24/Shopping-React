@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import './SearchItem.css';
 // get our fontawesome imports
-import { faHome, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SearchItem = ({searchClick})=>
