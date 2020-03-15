@@ -38,7 +38,14 @@ export const fetchShoppingItems = () =>{
     return dispatch => {
         axios.get( 'https://api.myjson.com/bins/qzuzi' )
             .then( response => {
-               dispatch(setShoppingItems(response.data));
+
+                let dataNew = response.data.map( (i)=>   {
+                        i["sellingPrice"] = i.price - i.discount  ;
+                        i["discountPercentage"] = ((i.discount*100)/i.price).toFixed(2);
+        
+                        return i;
+                        });
+               dispatch(setShoppingItems(dataNew));
             } )
             .catch( error => {
                 dispatch(fetchShoppingItemsFailed());
