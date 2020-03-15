@@ -29,9 +29,16 @@ const removeCartItem = (state, action) =>{
 
 const setShoppingItems = (state, action) =>{
 
+    let updatedItems = action.Items.map( (i)=>   {
+        i["sellingPrice"] = i.price - i.discount  ;
+        i["discountPercentage"] = ((i.discount*100)/i.price).toFixed(2);
+
+        return i;
+        });
+
     return {
         ...state,
-        ShoppingItems : action.Items
+        ShoppingItems : updatedItems
     }
 }
 
