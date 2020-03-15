@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from 'react';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+
 import  './ShoppingItem.css';
+import * as Action from '../../Store/Actions/Index';
 import ShoppingItemList from '../../Components/Shopping/ShoppingItemList/ShoppingItemList';
 import PriceSlider from '../../Components/Shopping/PriceSlider';
 import SortPanel from '../../Components/Shopping/SortPanel';
@@ -7,32 +10,48 @@ import SearchItem from '../../Components/Shopping/SearchItem';
 import CartIcon from '../../Components/Shopping/CartIcon';
 import * as Constants from '../../Shared/Constant'
 
-const Container = () =>
+const ShoppingItemContainer = () =>
 {
-    var apiCalled = false;
-    const [items, setitems] = useState([]);
+    let apiCalled = false;
+
+    const {ShoppingItems} = useSelector( (state) => (
+            {
+                ShoppingItems : state.ShoppingCart.ShoppingItems
+            }), shallowEqual );
+    const dispatch = useDispatch();  
+    
+    
     const [sortOrder, setSortOrder] = useState( Constants.HighLow)
     const [searchValue, setSearchValue] = useState( "")
     const [PriceSliderValue, setPriceSliderValue] = useState(1000)
-    const callItemApi = ()=>{
 
-        fetch('https://api.myjson.com/bins/qzuzi')
-        .then(res => res.json())
-        .then((data) => {
 
-            let dataNew = data.map( (i)=>   {
-                i["sellingPrice"] = i.price - i.discount  ;
-                i["discountPercentage"] = ((i.discount*100)/i.price).toFixed(2);
 
-              return i;
-            }
-            );
-            setitems(dataNew);
-        })
-        .catch(console.log);
+
+    const fetchShoppingItems = ()=>{
+
+
+        dispatch( ()=> dispatch(Action.fetchShoppingItems())   );
+       
+        // fetch('https://api.myjson.com/bins/qzuzi')
+        // .then(res => res.json())
+        // .then((data) => {
+
+        //     let dataNew = data.map( (i)=>   {
+        //         i["sellingPrice"] = i.price - i.discount  ;
+        //         i["discountPercentage"] = ((i.discount*100)/i.price).toFixed(2);
+
+        //       return i;
+        //     }
+        //     );
+        //     setitems(dataNew);
+        // })
+        // .catch(console.log);
+
+        
         apiCalled = true;
     }
-    useEffect(callItemApi, apiCalled);
+    useEffect(fetchShoppingItems, apiCalled);
    
     const handelSortClick = (sortOrder)=>
     {
@@ -51,8 +70,11 @@ const Container = () =>
     }
 
     const getDisplayItemList =()=>{
+              
+        let newItems = ShoppingItems
+        if (newItems === undefined)
+            return []; 
 
-        var newItems = [...items]
         newItems = newItems.filter((item)=> item.price <= PriceSliderValue );
 
         if(searchValue !== "")
@@ -75,7 +97,7 @@ const Container = () =>
          else{
             newItems.sort((a, b) => parseFloat(a.discountPercentage) - parseFloat(b.discountPercentage));
          }
-        return [...newItems];
+        return newItems;
     }
 
 
@@ -107,4 +129,13 @@ const Container = () =>
         </div>
     )
 }
-export default Container;
+
+
+
+// const mapDispatchtoProp = (dispatch) =>{
+//     return{
+//         onFetchShoppingItems : () => { dispatch(Action.fetchShoppingItems()) }
+//     }
+// }
+
+export default ShoppingItemContainer;
