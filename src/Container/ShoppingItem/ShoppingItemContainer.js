@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 
-import  './ShoppingItem.css';
+import  './ShoppingItemContainer.css';
 import * as Action from '../../Store/Actions/Index';
 import ShoppingItemList from '../../Components/Shopping/ShoppingItemList/ShoppingItemList';
 import PriceSlider from '../../Components/Shopping/PriceSlider';
@@ -26,33 +26,13 @@ const ShoppingItemContainer = () =>
     const [PriceSliderValue, setPriceSliderValue] = useState(1000)
 
 
-
-
     const fetchShoppingItems = ()=>{
 
-
-        dispatch( ()=> dispatch(Action.fetchShoppingItems())   );
-       
-        // fetch('https://api.myjson.com/bins/qzuzi')
-        // .then(res => res.json())
-        // .then((data) => {
-
-        //     let dataNew = data.map( (i)=>   {
-        //         i["sellingPrice"] = i.price - i.discount  ;
-        //         i["discountPercentage"] = ((i.discount*100)/i.price).toFixed(2);
-
-        //       return i;
-        //     }
-        //     );
-        //     setitems(dataNew);
-        // })
-        // .catch(console.log);
-
-        
+        dispatch( ()=> dispatch(Action.fetchShoppingItems())   );       
         apiCalled = true;
     }
     useEffect(fetchShoppingItems, apiCalled);
-   
+
     const handelSortClick = (sortOrder)=>
     {
         setSortOrder(sortOrder);        
@@ -72,8 +52,10 @@ const ShoppingItemContainer = () =>
     const getDisplayItemList =()=>{
               
         let newItems = ShoppingItems
-        if (newItems === undefined)
+        if (newItems === undefined  || newItems == null)
+        {
             return []; 
+        }
 
         newItems = newItems.filter((item)=> item.price <= PriceSliderValue );
 
@@ -129,13 +111,4 @@ const ShoppingItemContainer = () =>
         </div>
     )
 }
-
-
-
-// const mapDispatchtoProp = (dispatch) =>{
-//     return{
-//         onFetchShoppingItems : () => { dispatch(Action.fetchShoppingItems()) }
-//     }
-// }
-
 export default ShoppingItemContainer;

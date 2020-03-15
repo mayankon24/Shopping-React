@@ -54,12 +54,11 @@ const reducer = (state = initialState, action)=>{
 
     switch(action.type)
     {
-        case actionTypes.ADD_CART_ITEM : return addCartItem();
-        case actionTypes.REMOVE_CART_ITEM : return removeCartItem();
-        case actionTypes.SET_SHOPPING_ITEMS : return setShoppingItems();
-        case actionTypes.FETCH_SHOPPING_ITEMS_FAILED : return fetchShoppingItemsFailed();
+        case actionTypes.ADD_CART_ITEM : return addCartItem(state, action);
+        case actionTypes.REMOVE_CART_ITEM : return removeCartItem(state, action);
+        case actionTypes.SET_SHOPPING_ITEMS : return setShoppingItems(state, action);
+        case actionTypes.FETCH_SHOPPING_ITEMS_FAILED : return fetchShoppingItemsFailed(state, action);
         default : return state;        
     }
 }
-
 export default reducer;

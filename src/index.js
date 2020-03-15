@@ -9,17 +9,7 @@ import App from './App';
 import ShoppingCartReducer from './Store/Reducers/ShoppingCart'
 import registerServiceWorker from './registerServiceWorker';
 //import * as serviceWorker from './serviceWorker';
-import ShoppingItemContainer from './Container/ShoppingItem/ShoppingItem';
-
-// let composeEnhancers = null;
-// if (process.env.NODE_ENV === 'development') {
-//     composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
-// } else {
-//     composeEnhancers = compose;
-// }
-
-
-
+import ShoppingItemContainer from './Container/ShoppingItem/ShoppingItemContainer';
 
 const rootReducer = combineReducers(
     {
@@ -27,8 +17,9 @@ const rootReducer = combineReducers(
     }
 );
 
-const store = createStore(rootReducer);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 const app = (
     <Provider store={store}>      
